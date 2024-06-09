@@ -83,10 +83,32 @@ void menu(){
 }
 
 void cadastrarProduto(){
-    // falta implementar
+    printf("Cadastrar de Produto\n");
+    printf("=====================\n");
+
+    printf("Informe o nome do produto: \n");
+    fgets(produtos[contador_produtos].nome, 30, stdin);
+
+    printf("Informe o preço do produto: \n");
+    scanf("%f", &produtos[contador_produtos].preco);
+    getchar();
+    printf("O produto %s foi cadastrado com sucesso!\n", strtok(produtos[contador_produtos].nome, "\n"));
+    produtos[contador_produtos].codigo = contador_produtos + 1;
+    contador_produtos++;
 }
 void listarProdutos(){
-    // falta implementar
+    if (contador_produtos == 0){
+        printf("Listagem de Produtos\n");
+        printf("====================\n");
+        for(int i = 0; i < contador_produtos; i++){
+            infoProduto(produtos[i]);
+        printf("====================\n");
+        Sleep(1);
+        }
+    }
+    else{
+            printf("Nenhum produto foi cadastrado!\n");
+    }
 }
 void comprarProdutos(){
     // falta implementar
