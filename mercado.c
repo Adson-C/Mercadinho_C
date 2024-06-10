@@ -114,10 +114,27 @@ void comprarProdutos(){
     // falta implementar
 }
 void visualizarCarrinho(){
-    // falta implementar
+    if (contador_carrinho > 0){
+        printf("Produto do Carrinho\n");
+        printf("====================\n");
+        for(int i = 0; i < contador_carrinho; i++){
+            printf("Quantidade: %d\n", carrinho[i].quantidade);
+        printf("====================\n");
+        Sleep(1);
+        }
+
+    }else{
+        printf("Nenhum item no carrinho!\n");
+    }
 }
 Produto pegarProdutoPorCodigo(int codigo){
-    // falta implementar
+    Produto p;
+    for(int i = 0; i < contador_produtos; i++){
+        if(produtos[i].codigo == codigo){
+            p = produtos[i];
+        }
+    }
+    return p;
 }
 int * temNoCarrinho(int codigo){
     // falta implementar
