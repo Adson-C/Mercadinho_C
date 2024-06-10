@@ -54,7 +54,6 @@ void menu(){
     printf("4 - Visualizar carrinho\n");
     printf("5 - Fechar pedido\n");
     printf("6 - Sair\n");
-    printf("===============================================\n");
 
     int opcao;
     scanf("%d", &opcao);
@@ -73,10 +72,11 @@ void menu(){
         break;
         case 6:
             printf("Volte sempre...\n");
+            Sleep(3000);
             exit(0);
         default: 
             printf("Opção inválida!\n");
-            Sleep(2);
+            Sleep(3000);
             menu();
         break;
     }
@@ -97,17 +97,20 @@ void cadastrarProduto(){
     contador_produtos++;
 }
 void listarProdutos(){
-    if (contador_produtos == 0){
+    if (contador_produtos > 0){
         printf("Listagem de Produtos\n");
         printf("====================\n");
         for(int i = 0; i < contador_produtos; i++){
             infoProduto(produtos[i]);
         printf("====================\n");
-        Sleep(1);
+        Sleep(3000);
+        menu();
         }
     }
     else{
-            printf("Nenhum produto foi cadastrado!\n");
+            printf("Não temos ainda produtos cadastrados\n");
+            Sleep(3000);
+            menu();
     }
 }
 void comprarProdutos(){
@@ -117,7 +120,7 @@ void comprarProdutos(){
         for(int i = 0; i < contador_produtos; i++){
             infoProduto(produtos[i]);
         printf("====================================\n");
-        Sleep(1);
+        Sleep(3000);
         }
         int codigo;
         scanf("%d", &codigo);
@@ -132,9 +135,9 @@ void comprarProdutos(){
                     int * retorno = temNoCarrinho(codigo);
 
                     if (retorno[0] == 1){
-                        carrinho[retorno[1]].quantidade++
+                        carrinho[retorno[1]].quantidade++;
                         printf("Adicionado a quantidade do produto %s já exitente no carrinho\n", strtok(carrinho[retorno[1]].produtos.nome, "\n"));
-                        Sleep(2);
+                        Sleep(2000);
                         menu();
                     }else{
                         Produto p = pegarProdutoPorCodigo(codigo);
@@ -142,7 +145,7 @@ void comprarProdutos(){
                         carrinho[contador_carrinho].quantidade = 1;
                         contador_carrinho++;
                         printf("O item %s foi adicionado ao carrinho\n", strtok(p.nome, "\n"));
-                        Sleep(2);
+                        Sleep(2000);
                         menu();
                     }
                 }else {
@@ -151,19 +154,19 @@ void comprarProdutos(){
                     carrinho[contador_carrinho].quantidade = 1;
                     contador_carrinho++;
                     printf("O item %s foi adicionado ao carrinho\n", strtok(p.nome, "\n"));
-                    Sleep(2);
+                    Sleep(2000);
                     menu();
                 }
             }
         }
         if ( tem_mercado < 1){
                 printf("Não foi encontrado o produto com código %d\n", codigo);
-                Sleep(2);
+                Sleep(3000);
                 menu();
         }
     }else{
         printf("Ainda não existem produtos para vender!\n");
-        Sleep(3);
+        Sleep(3000);
         menu();
     }
 }
@@ -172,13 +175,15 @@ void visualizarCarrinho(){
         printf("Produto do Carrinho\n");
         printf("====================\n");
         for(int i = 0; i < contador_carrinho; i++){
+            infoProduto(carrinho[i].produtos);
             printf("Quantidade: %d\n", carrinho[i].quantidade);
         printf("====================\n");
-        Sleep(1);
+        Sleep(1000);
         }
-
     }else{
         printf("Nenhum item no carrinho!\n");
+        Sleep(3000);
+        menu();
     }
 }
 Produto pegarProdutoPorCodigo(int codigo){
@@ -212,17 +217,17 @@ void fecharPedido() {
             infoProduto(p);
             printf("Quantidade: %d\n", quantidade);
             printf("====================\n");
-            Sleep(1);
+            Sleep(1000);
         }
         printf("Sua compra total R$ %.2f\n", valor_total);
         // limpar o carrinho
         contador_carrinho = 0;
         printf("Obrigado por comprar conosco!\n");
-        Sleep(5);
+        Sleep(5000);
         menu();
     }else{
         printf("Você não tem nenhum item no carrinho ainda\n");
-        Sleep(3);
+        Sleep(5000);
         menu();
     }
 }
