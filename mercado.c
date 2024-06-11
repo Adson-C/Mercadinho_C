@@ -54,7 +54,6 @@ void menu(){
     printf("4 - Visualizar carrinho\n");
     printf("5 - Fechar pedido\n");
     printf("6 - Sair\n");
-    printf("===============================================\n");
 
     int opcao;
     scanf("%d", &opcao);
@@ -73,10 +72,11 @@ void menu(){
         break;
         case 6:
             printf("Volte sempre...\n");
+            Sleep(3000);
             exit(0);
         default: 
             printf("Opção inválida!\n");
-            Sleep(2);
+            Sleep(3000);
             menu();
         break;
     }
@@ -88,43 +88,132 @@ void cadastrarProduto(){
 
     printf("Informe o nome do produto: \n");
     fgets(produtos[contador_produtos].nome, 30, stdin);
-
+    printf("O nome do produto %s foi cadastrado com sucesso!\n", strtok(produtos[contador_produtos].nome, "\n"));
     printf("Informe o preço do produto: \n");
+    fflush(stdin);
     scanf("%f", &produtos[contador_produtos].preco);
     getchar();
     printf("O produto %s foi cadastrado com sucesso!\n", strtok(produtos[contador_produtos].nome, "\n"));
-    produtos[contador_produtos].codigo = contador_produtos + 1;
+    produtos[contador_produtos].codigo = (contador_produtos + 1);
+
     contador_produtos++;
+    Sleep(3000);
+    menu();
 }
 void listarProdutos(){
-    if (contador_produtos == 0){
+    if (contador_produtos > 0){
         printf("Listagem de Produtos\n");
         printf("====================\n");
         for(int i = 0; i < contador_produtos; i++){
             infoProduto(produtos[i]);
         printf("====================\n");
-        Sleep(1);
+<<<<<<< HEAD
+        Sleep(2000);
+=======
+        Sleep(3000);
+        menu();
+>>>>>>> 1da079075ab9ed3ec7666daa413e110dab9fd49b
         }
+        Sleep(3000);
+        menu();
     }
     else{
-            printf("Nenhum produto foi cadastrado!\n");
+            printf("Não temos ainda produtos cadastrados\n");
+            Sleep(3000);
+            menu();
     }
 }
 void comprarProdutos(){
-    // falta implementar
+<<<<<<< HEAD
+    if (contador_produtos > 0){
+=======
+    if (contador_produtos == 0){
+>>>>>>> 1da079075ab9ed3ec7666daa413e110dab9fd49b
+        printf("Informe o código do produto que deseja comprar: \n");
+        printf("============> Produtos Disponíveis <===============\n");
+        for(int i = 0; i < contador_produtos; i++){
+            infoProduto(produtos[i]);
+        printf("====================================\n");
+<<<<<<< HEAD
+        Sleep(1000);
+=======
+        Sleep(3000);
+>>>>>>> 1da079075ab9ed3ec7666daa413e110dab9fd49b
+        }
+        int codigo;
+        scanf("%d", &codigo);
+        getchar();
+
+        int tem_mercado = 0;
+        for(int i = 0; i < contador_produtos; i++){
+            if(produtos[i].codigo == codigo){
+                tem_mercado = 1;
+                
+                if (contador_carrinho > 0){
+                    int * retorno = temNoCarrinho(codigo);
+
+                    if (retorno[0] == 1){
+                        carrinho[retorno[1]].quantidade++;
+                        printf("Adicionado a quantidade do produto %s já exitente no carrinho\n", strtok(carrinho[retorno[1]].produtos.nome, "\n"));
+                        Sleep(2000);
+                        menu();
+                    }else{
+                        Produto p = pegarProdutoPorCodigo(codigo);
+                        carrinho[contador_carrinho].produtos = p;
+                        carrinho[contador_carrinho].quantidade = 1;
+                        contador_carrinho++;
+                        printf("O item %s foi adicionado ao carrinho\n", strtok(p.nome, "\n"));
+                        Sleep(2000);
+                        menu();
+                    }
+                }else {
+                    Produto p = pegarProdutoPorCodigo(codigo);
+                    carrinho[contador_carrinho].produtos = p;
+                    carrinho[contador_carrinho].quantidade = 1;
+                    contador_carrinho++;
+                    printf("O item %s foi adicionado ao carrinho\n", strtok(p.nome, "\n"));
+                    Sleep(2000);
+                    menu();
+                }
+            }
+        }
+        if ( tem_mercado < 1){
+                printf("Não foi encontrado o produto com código %d\n", codigo);
+                Sleep(3000);
+                menu();
+        }
+    }else{
+        printf("Ainda não existem produtos para vender!\n");
+<<<<<<< HEAD
+        Sleep(2000);
+=======
+        Sleep(3000);
+>>>>>>> 1da079075ab9ed3ec7666daa413e110dab9fd49b
+        menu();
+    }
 }
 void visualizarCarrinho(){
     if (contador_carrinho > 0){
         printf("Produto do Carrinho\n");
         printf("====================\n");
         for(int i = 0; i < contador_carrinho; i++){
+            infoProduto(carrinho[i].produtos);
             printf("Quantidade: %d\n", carrinho[i].quantidade);
         printf("====================\n");
-        Sleep(1);
+        Sleep(1000);
         }
-
+<<<<<<< HEAD
+        Sleep(2000);
+        menu();
     }else{
         printf("Nenhum item no carrinho!\n");
+        Sleep(2000);
+=======
+    }else{
+        printf("Nenhum item no carrinho!\n");
+        Sleep(3000);
+>>>>>>> 1da079075ab9ed3ec7666daa413e110dab9fd49b
+        menu();
     }
 }
 Produto pegarProdutoPorCodigo(int codigo){
@@ -158,17 +247,21 @@ void fecharPedido() {
             infoProduto(p);
             printf("Quantidade: %d\n", quantidade);
             printf("====================\n");
-            Sleep(1);
+            Sleep(1000);
         }
         printf("Sua compra total R$ %.2f\n", valor_total);
         // limpar o carrinho
         contador_carrinho = 0;
         printf("Obrigado por comprar conosco!\n");
-        Sleep(5);
+<<<<<<< HEAD
+        Sleep(3000);
+=======
+        Sleep(5000);
+>>>>>>> 1da079075ab9ed3ec7666daa413e110dab9fd49b
         menu();
     }else{
         printf("Você não tem nenhum item no carrinho ainda\n");
-        Sleep(3);
+        Sleep(5000);
         menu();
     }
 }
