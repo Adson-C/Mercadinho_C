@@ -72,11 +72,11 @@ void menu(){
         break;
         case 6:
             printf("Volte sempre...\n");
-            Sleep(3000);
+            Sleep(2000);
             exit(0);
         default: 
             printf("Opção inválida!\n");
-            Sleep(3000);
+            Sleep(1000);
             menu();
         break;
     }
@@ -97,7 +97,7 @@ void cadastrarProduto(){
     produtos[contador_produtos].codigo = (contador_produtos + 1);
 
     contador_produtos++;
-    Sleep(3000);
+    Sleep(2000);
     menu();
 }
 void listarProdutos(){
@@ -106,39 +106,27 @@ void listarProdutos(){
         printf("====================\n");
         for(int i = 0; i < contador_produtos; i++){
             infoProduto(produtos[i]);
+            
         printf("====================\n");
-<<<<<<< HEAD
-        Sleep(2000);
-=======
-        Sleep(3000);
-        menu();
->>>>>>> 1da079075ab9ed3ec7666daa413e110dab9fd49b
+        Sleep(1000);
         }
-        Sleep(3000);
+        Sleep(2000);
         menu();
     }
     else{
             printf("Não temos ainda produtos cadastrados\n");
-            Sleep(3000);
+            Sleep(2000);
             menu();
     }
 }
 void comprarProdutos(){
-<<<<<<< HEAD
     if (contador_produtos > 0){
-=======
-    if (contador_produtos == 0){
->>>>>>> 1da079075ab9ed3ec7666daa413e110dab9fd49b
         printf("Informe o código do produto que deseja comprar: \n");
         printf("============> Produtos Disponíveis <===============\n");
         for(int i = 0; i < contador_produtos; i++){
             infoProduto(produtos[i]);
         printf("====================================\n");
-<<<<<<< HEAD
         Sleep(1000);
-=======
-        Sleep(3000);
->>>>>>> 1da079075ab9ed3ec7666daa413e110dab9fd49b
         }
         int codigo;
         scanf("%d", &codigo);
@@ -179,16 +167,12 @@ void comprarProdutos(){
         }
         if ( tem_mercado < 1){
                 printf("Não foi encontrado o produto com código %d\n", codigo);
-                Sleep(3000);
+                Sleep(2000);
                 menu();
         }
     }else{
         printf("Ainda não existem produtos para vender!\n");
-<<<<<<< HEAD
         Sleep(2000);
-=======
-        Sleep(3000);
->>>>>>> 1da079075ab9ed3ec7666daa413e110dab9fd49b
         menu();
     }
 }
@@ -202,17 +186,11 @@ void visualizarCarrinho(){
         printf("====================\n");
         Sleep(1000);
         }
-<<<<<<< HEAD
         Sleep(2000);
         menu();
     }else{
         printf("Nenhum item no carrinho!\n");
         Sleep(2000);
-=======
-    }else{
-        printf("Nenhum item no carrinho!\n");
-        Sleep(3000);
->>>>>>> 1da079075ab9ed3ec7666daa413e110dab9fd49b
         menu();
     }
 }
@@ -253,15 +231,11 @@ void fecharPedido() {
         // limpar o carrinho
         contador_carrinho = 0;
         printf("Obrigado por comprar conosco!\n");
-<<<<<<< HEAD
         Sleep(3000);
-=======
-        Sleep(5000);
->>>>>>> 1da079075ab9ed3ec7666daa413e110dab9fd49b
         menu();
     }else{
         printf("Você não tem nenhum item no carrinho ainda\n");
-        Sleep(5000);
+        Sleep(3000);
         menu();
     }
 }
